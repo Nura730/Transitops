@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ═══ Module Category ═══ -->
+    <record id="module_category_transit_ops" model="ir.module.category">
+        <field name="name">TransitOps</field>
+        <field name="description">Smart Transport Operations Platform</field>
+        <field name="sequence">10</field>
+    </record>
+
+    <!-- ═══ Security Groups (RBAC) ═══ -->
+
+    <!-- Dispatcher: Creates trips, assigns vehicles and drivers, monitors deliveries -->
+    <record id="group_dispatcher" model="res.groups">
+        <field name="name">Dispatcher</field>
+        <field name="category_id" ref="module_category_transit_ops"/>
+        <field name="comment">Can create and manage trips, view vehicles and drivers.</field>
+    </record>
+
+    <!-- Safety Officer: Ensures driver compliance, license validity, safety scores -->
+    <record id="group_safety_officer" model="res.groups">
+        <field name="name">Safety Officer</field>
+        <field name="category_id" ref="module_category_transit_ops"/>
+        <field name="implied_ids" eval="[(4, ref('group_dispatcher'))]"/>
+        <field name="comment">Can manage drivers and maintenance, view all modules.</field>
+    </record>
+
+    <!-- Financial Analyst: Reviews expenses, fuel consumption, costs, profitability -->
+    <record id="group_financial_analyst" model="res.groups">
+        <field name="name">Financial Analyst</field>
+        <field name="category_id" ref="module_category_transit_ops"/>
+        <field name="implied_ids" eval="[(4, ref('group_dispatcher'))]"/>
+        <field name="comment">Can manage fuel logs and expenses, view reports.</field>
+    </record>
+
+    <!-- Fleet Manager: Full access to fleet, maintenance, lifecycle, efficiency -->
+    <record id="group_fleet_manager" model="res.groups">
+        <field name="name">Fleet Manager</field>
+        <field name="category_id" ref="module_category_transit_ops"/>
+        <field name="implied_ids" eval="[(4, ref('group_safety_officer')), (4, ref('group_financial_analyst'))]"/>
+        <field name="comment">Full access to all TransitOps features.</field>
+    </record>
+
+    <!-- ═══ Record Rules ═══ -->
+
+    <!-- All authenticated users can read vehicles, drivers, trips -->
+    <record id="rule_vehicle_read_all" model="ir.rule">
+        <field name="name">TransitOps: All users can read vehicles</field>
+        <field name="model_id" ref="model_transit_vehicle"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+        <field name="groups" eval="[(4, ref('group_dispatcher'))]"/>
+    </record>
+
+    <record id="rule_driver_read_all" model="ir.rule">
+        <field name="name">TransitOps: All users can read drivers</field>
+        <field name="model_id" ref="model_transit_driver"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+        <field name="groups" eval="[(4, ref('group_dispatcher'))]"/>
+    </record>
+
+</odoo>

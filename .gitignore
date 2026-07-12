@@ -1,0 +1,21 @@
+# Odoo runtime files
+odoo.log
+odoo_data/
+*.pyc
+__pycache__/
+*.pyo
+
+# Config with credentials
+odoo.conf
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Node/React leftovers (removed)
+node_modules/
+package-lock.json

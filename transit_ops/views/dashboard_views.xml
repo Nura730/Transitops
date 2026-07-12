@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ═══ Dashboard Form View (KPI Display) ═══ -->
+    <record id="view_transit_dashboard_form" model="ir.ui.view">
+        <field name="name">transit.dashboard.form</field>
+        <field name="model">transit.dashboard</field>
+        <field name="arch" type="xml">
+            <form string="TransitOps Dashboard" create="false" delete="false">
+                <header>
+                    <button name="action_refresh" string="🔄 Refresh Data" type="object" class="btn-primary"/>
+                    <button name="action_open_dispatch_wizard" string="🚀 Quick Dispatch" type="object" class="btn-success"/>
+                </header>
+                <sheet>
+                    <div class="container-fluid o_transit_dashboard">
+                        <div class="text-center mb-4 mt-2">
+                            <h2>🚚 TransitOps — Fleet Control Center</h2>
+                            <p class="text-muted">Real-time overview of fleet operations</p>
+                        </div>
+
+                        <!-- ═══ Vehicle KPIs ═══ -->
+                        <h5 class="mt-4 mb-3">
+                            <i class="fa fa-truck me-2"/> Fleet Status
+                        </h5>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-6 mb-3">
+                                <div class="card border-0 shadow-sm" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 12px;">
+                                    <div class="card-body text-center py-4">
+                                        <p class="card-text mb-1 small" style="opacity: 0.85;">Total Vehicles</p>
+                                        <h2 class="mb-0"><field name="total_vehicles" readonly="1"/></h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 mb-3">
+                                <div class="card border-0 shadow-sm" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); color: white; border-radius: 12px;">
+                                    <div class="card-body text-center py-4">
+                                        <p class="card-text mb-1 small" style="opacity: 0.85;">Available</p>
+                                        <h2 class="mb-0"><field name="available_vehicles" readonly="1"/></h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 mb-3">
+                                <div class="card border-0 shadow-sm" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; border-radius: 12px;">
+                                    <div class="card-body text-center py-4">
+                                        <p class="card-text mb-1 small" style="opacity: 0.85;">On Trip</p>
+                                        <h2 class="mb-0"><field name="on_trip_vehicles" readonly="1"/></h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 mb-3">
+                                <div class="card border-0 shadow-sm" style="background: linear-gradient(135deg, #fbc2eb 0%, #a18cd1 100%); color: white; border-radius: 12px;">
+                                    <div class="card-body text-center py-4">
+                                        <p class="card-text mb-1 small" style="opacity: 0.85;">In Maintenance</p>
+                                        <h2 class="mb-0"><field name="in_shop_vehicles" readonly="1"/></h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ═══ Trip KPIs ═══ -->
+                        <h5 class="mt-4 mb-3">
+                            <i class="fa fa-road me-2"/> Trip Operations
+                        </h5>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-6 mb-3">
+                                <div class="card border-0 shadow-sm" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; border-radius: 12px;">
+                                    <div class="card-body text-center py-4">
+                                        <p class="card-text mb-1 small" style="opacity: 0.85;">Active Trips</p>
+                                        <h2 class="mb-0"><field name="active_trips" readonly="1"/></h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 mb-3">
+                                <div class="card border-0 shadow-sm" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); color: white; border-radius: 12px;">
+                                    <div class="card-body text-center py-4">
+                                        <p class="card-text mb-1 small" style="opacity: 0.85;">Pending (Draft)</p>
+                                        <h2 class="mb-0"><field name="pending_trips" readonly="1"/></h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 mb-3">
+                                <div class="card border-0 shadow-sm" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #333; border-radius: 12px;">
+                                    <div class="card-body text-center py-4">
+                                        <p class="card-text mb-1 small" style="opacity: 0.75;">Completed</p>
+                                        <h2 class="mb-0"><field name="completed_trips" readonly="1"/></h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 mb-3">
+                                <div class="card border-0 shadow-sm" style="background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%); color: #333; border-radius: 12px;">
+                                    <div class="card-body text-center py-4">
+                                        <p class="card-text mb-1 small" style="opacity: 0.75;">Fleet Utilization</p>
+                                        <h2 class="mb-0"><field name="fleet_utilization" readonly="1"/>%</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ═══ Driver &amp; Compliance KPIs ═══ -->
+                        <h5 class="mt-4 mb-3">
+                            <i class="fa fa-users me-2"/> Driver &amp; Compliance
+                        </h5>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-6 mb-3">
+                                <div class="card border-left-primary mb-3" style="border-radius: 10px; border-left: 4px solid #667eea !important;">
+                                    <div class="card-body">
+                                        <p class="text-muted small mb-1">Total Drivers</p>
+                                        <h3><field name="total_drivers" readonly="1"/></h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 mb-3">
+                                <div class="card mb-3" style="border-radius: 10px; border-left: 4px solid #38ef7d !important;">
+                                    <div class="card-body">
+                                        <p class="text-muted small mb-1">Available</p>
+                                        <h3><field name="available_drivers" readonly="1"/></h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 mb-3">
+                                <div class="card mb-3" style="border-radius: 10px; border-left: 4px solid #f5576c !important;">
+                                    <div class="card-body">
+                                        <p class="text-muted small mb-1">On Duty</p>
+                                        <h3><field name="on_trip_drivers" readonly="1"/></h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 mb-3">
+                                <button name="action_open_expired_licenses" type="object" class="btn p-0 w-100 text-start">
+                                    <div class="card mb-3" style="border-radius: 10px; border-left: 4px solid #dc3545 !important;">
+                                        <div class="card-body">
+                                            <p class="text-danger small mb-1">⚠ Expired Licenses</p>
+                                            <h3 class="text-danger"><field name="expired_license_drivers" readonly="1"/></h3>
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- ═══ Financial KPIs ═══ -->
+                        <h5 class="mt-4 mb-3">
+                            <i class="fa fa-line-chart me-2"/> Financials
+                        </h5>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-6 mb-3">
+                                <div class="card mb-3" style="border-radius: 10px; border-top: 3px solid #dc3545;">
+                                    <div class="card-body text-center">
+                                        <p class="text-muted small mb-1">Total Fuel Cost</p>
+                                        <h3 class="text-danger">₹ <field name="total_fuel_cost" readonly="1" widget="float" options="{'digits': [12, 0]}"/></h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 mb-3">
+                                <div class="card mb-3" style="border-radius: 10px; border-top: 3px solid #ffc107;">
+                                    <div class="card-body text-center">
+                                        <p class="text-muted small mb-1">Total Maintenance Cost</p>
+                                        <h3 class="text-warning">₹ <field name="total_maintenance_cost" readonly="1" widget="float" options="{'digits': [12, 0]}"/></h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 mb-3">
+                                <div class="card mb-3" style="border-radius: 10px; border-top: 3px solid #28a745;">
+                                    <div class="card-body text-center">
+                                        <p class="text-muted small mb-1">Total Revenue</p>
+                                        <h3 class="text-success">₹ <field name="total_revenue" readonly="1" widget="float" options="{'digits': [12, 0]}"/></h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ═══ Quick Actions ═══ -->
+                        <h5 class="mt-4 mb-3">
+                            <i class="fa fa-bolt me-2"/> Quick Actions
+                        </h5>
+                        <div class="row mb-4">
+                            <div class="col-md-2 col-sm-4 col-6 mb-2">
+                                <button name="action_open_dispatch_wizard" type="object" class="btn btn-primary w-100 py-3" style="border-radius: 10px;">
+                                    <i class="fa fa-plus d-block mb-1" style="font-size: 20px;"/>
+                                    <small>New Trip</small>
+                                </button>
+                            </div>
+                            <div class="col-md-2 col-sm-4 col-6 mb-2">
+                                <button name="action_open_vehicles" type="object" class="btn btn-outline-primary w-100 py-3" style="border-radius: 10px;">
+                                    <i class="fa fa-truck d-block mb-1" style="font-size: 20px;"/>
+                                    <small>Vehicles</small>
+                                </button>
+                            </div>
+                            <div class="col-md-2 col-sm-4 col-6 mb-2">
+                                <button name="action_open_drivers" type="object" class="btn btn-outline-info w-100 py-3" style="border-radius: 10px;">
+                                    <i class="fa fa-users d-block mb-1" style="font-size: 20px;"/>
+                                    <small>Drivers</small>
+                                </button>
+                            </div>
+                            <div class="col-md-2 col-sm-4 col-6 mb-2">
+                                <button name="action_open_trips" type="object" class="btn btn-outline-success w-100 py-3" style="border-radius: 10px;">
+                                    <i class="fa fa-road d-block mb-1" style="font-size: 20px;"/>
+                                    <small>Trips</small>
+                                </button>
+                            </div>
+                            <div class="col-md-2 col-sm-4 col-6 mb-2">
+                                <button name="action_open_maintenance" type="object" class="btn btn-outline-warning w-100 py-3" style="border-radius: 10px;">
+                                    <i class="fa fa-wrench d-block mb-1" style="font-size: 20px;"/>
+                                    <small>Maintenance</small>
+                                </button>
+                            </div>
+                            <div class="col-md-2 col-sm-4 col-6 mb-2">
+                                <button name="action_open_fuel_logs" type="object" class="btn btn-outline-danger w-100 py-3" style="border-radius: 10px;">
+                                    <i class="fa fa-tint d-block mb-1" style="font-size: 20px;"/>
+                                    <small>Fuel Logs</small>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ═══ Dashboard Action ═══ -->
+    <record id="action_transit_dashboard" model="ir.actions.act_window">
+        <field name="name">Dashboard</field>
+        <field name="res_model">transit.dashboard</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+    </record>
+</odoo>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ═══ Fuel Log Tree View ═══ -->
+    <record id="view_transit_fuel_log_tree" model="ir.ui.view">
+        <field name="name">transit.fuel.log.tree</field>
+        <field name="model">transit.fuel.log</field>
+        <field name="arch" type="xml">
+            <tree string="Fuel Logs" editable="bottom">
+                <field name="date"/>
+                <field name="vehicle_id"/>
+                <field name="vehicle_registration"/>
+                <field name="driver_id"/>
+                <field name="station"/>
+                <field name="litres" sum="Total Litres"/>
+                <field name="cost" sum="Total Cost"/>
+                <field name="cost_per_litre"/>
+                <field name="mileage" sum="Total Mileage"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- ═══ Fuel Log Form View ═══ -->
+    <record id="view_transit_fuel_log_form" model="ir.ui.view">
+        <field name="name">transit.fuel.log.form</field>
+        <field name="model">transit.fuel.log</field>
+        <field name="arch" type="xml">
+            <form string="Fuel Log">
+                <sheet>
+                    <group>
+                        <group string="Vehicle &amp; Driver">
+                            <field name="vehicle_id" options="{'no_create': True}"/>
+                            <field name="driver_id" options="{'no_create': True}"/>
+                            <field name="date"/>
+                        </group>
+                        <group string="Fuel Details">
+                            <field name="litres"/>
+                            <field name="cost"/>
+                            <field name="cost_per_litre"/>
+                            <field name="station"/>
+                            <field name="mileage"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ═══ Fuel Log Search ═══ -->
+    <record id="view_transit_fuel_log_search" model="ir.ui.view">
+        <field name="name">transit.fuel.log.search</field>
+        <field name="model">transit.fuel.log</field>
+        <field name="arch" type="xml">
+            <search string="Search Fuel Logs">
+                <field name="vehicle_id"/>
+                <field name="driver_id"/>
+                <field name="station"/>
+                <group expand="0" string="Group By">
+                    <filter string="Vehicle" name="groupby_vehicle" context="{'group_by': 'vehicle_id'}"/>
+                    <filter string="Driver" name="groupby_driver" context="{'group_by': 'driver_id'}"/>
+                    <filter string="Month" name="groupby_month" context="{'group_by': 'date:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ═══ Fuel Log Graph ═══ -->
+    <record id="view_transit_fuel_log_graph" model="ir.ui.view">
+        <field name="name">transit.fuel.log.graph</field>
+        <field name="model">transit.fuel.log</field>
+        <field name="arch" type="xml">
+            <graph string="Fuel Spend Trend" type="line">
+                <field name="date" type="row" interval="month"/>
+                <field name="cost" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- ═══ Fuel Log Pivot ═══ -->
+    <record id="view_transit_fuel_log_pivot" model="ir.ui.view">
+        <field name="name">transit.fuel.log.pivot</field>
+        <field name="model">transit.fuel.log</field>
+        <field name="arch" type="xml">
+            <pivot string="Fuel Analysis">
+                <field name="vehicle_id" type="row"/>
+                <field name="date" type="col" interval="month"/>
+                <field name="cost" type="measure"/>
+                <field name="litres" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- ═══ Fuel Log Action ═══ -->
+    <record id="action_transit_fuel_log" model="ir.actions.act_window">
+        <field name="name">Fuel Logs</field>
+        <field name="res_model">transit.fuel.log</field>
+        <field name="view_mode">tree,form,graph,pivot</field>
+        <field name="search_view_id" ref="view_transit_fuel_log_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Log your first fuel entry
+            </p>
+            <p>
+                Record fuel consumption to track costs, efficiency, and trends per vehicle.
+            </p>
+        </field>
+    </record>
+</odoo>

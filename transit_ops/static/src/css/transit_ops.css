@@ -1,0 +1,203 @@
+/* ═══════════════════════════════════════════════════════════
+   TransitOps — Custom Theme & UI Overrides
+   Matches the Excalidraw mockup design spec
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Module Application Branding ── */
+.o_action_manager .o_transit_dashboard {
+    background: #f8f9fa;
+    padding: 0 !important;
+}
+
+/* ── Dashboard KPI Cards ── */
+.o_transit_dashboard .card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: none;
+}
+.o_transit_dashboard .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* ── Dashboard Section Headers ── */
+.o_transit_dashboard h5 {
+    color: #1a1d2e;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 8px;
+}
+
+/* ── Quick Action Buttons ── */
+.o_transit_dashboard .btn {
+    transition: all 0.2s ease;
+    font-weight: 600;
+}
+.o_transit_dashboard .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ── Kanban Vehicle Cards ── */
+.o_kanban_view .o_kanban_record {
+    border-radius: 12px;
+    border: 1px solid #e8ecf1;
+    transition: all 0.2s ease;
+}
+.o_kanban_view .o_kanban_record:hover {
+    border-color: #667eea;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.15);
+    transform: translateY(-2px);
+}
+
+/* ── Status Badge Styling ── */
+.o_field_badge .badge {
+    font-weight: 600;
+    font-size: 0.75rem;
+    padding: 5px 12px;
+    border-radius: 20px;
+}
+
+/* Status-specific badge colors matching mockup */
+.o_field_badge .text-bg-success,
+.badge-success {
+    background: linear-gradient(135deg, #11998e, #38ef7d) !important;
+    color: white !important;
+}
+.o_field_badge .text-bg-warning,
+.badge-warning {
+    background: linear-gradient(135deg, #f5af19, #f12711) !important;
+    color: white !important;
+}
+.o_field_badge .text-bg-danger,
+.badge-danger {
+    background: linear-gradient(135deg, #e53935, #e35d5b) !important;
+    color: white !important;
+}
+.o_field_badge .text-bg-info,
+.badge-info {
+    background: linear-gradient(135deg, #4facfe, #00f2fe) !important;
+    color: white !important;
+}
+
+/* ── Trip Lifecycle Progress (mimicking the mockup's stepper) ── */
+.o_statusbar_status {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.o_statusbar_status button {
+    border-radius: 20px !important;
+    font-weight: 600;
+    font-size: 0.8rem;
+    padding: 4px 16px;
+    transition: all 0.2s ease;
+}
+.o_statusbar_status button.btn-primary,
+.o_statusbar_status button.o_arrow_button_current {
+    background: linear-gradient(135deg, #667eea, #764ba2) !important;
+    border: none !important;
+    color: white !important;
+}
+
+/* ── Form View Enhancements ── */
+.o_form_view .o_form_sheet {
+    border-radius: 12px;
+    border: 1px solid #e8ecf1;
+}
+.o_form_view .oe_title .o_input {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1a1d2e;
+}
+
+/* ── Trip Create Form (matching mockup's CREATE TRIP section) ── */
+.o_field_widget .o_input,
+.o_field_widget input,
+.o_field_widget select,
+.o_field_widget textarea {
+    border-radius: 8px !important;
+    border: 1px solid #dee2e6 !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.o_field_widget .o_input:focus,
+.o_field_widget input:focus,
+.o_field_widget select:focus {
+    border-color: #667eea !important;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15) !important;
+}
+
+/* ── List/Tree View Enhancements ── */
+.o_list_view .o_data_row:hover {
+    background: linear-gradient(135deg, #f8f9ff, #f0f3ff) !important;
+}
+.o_list_view .o_data_row td {
+    padding: 10px 8px;
+    vertical-align: middle;
+}
+.o_list_view thead th {
+    background: #1a1d2e;
+    color: white;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none !important;
+}
+
+/* ── Navigation / Menu Styling ── */
+.o_main_navbar {
+    background: linear-gradient(135deg, #1a1d2e, #2d3250) !important;
+}
+
+/* ── Graph / Pivot View Styling ── */
+.o_graph_view, .o_pivot_view {
+    padding: 16px;
+}
+
+/* ── Wizard (Dispatch / Export) Modal Styling ── */
+.modal-content {
+    border-radius: 16px;
+    border: none;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+.modal-header {
+    background: linear-gradient(135deg, #1a1d2e, #2d3250);
+    color: white;
+    border-radius: 16px 16px 0 0;
+}
+.modal-header .btn-close {
+    filter: brightness(0) invert(1);
+}
+
+/* ── Capacity Warning (matching the red box in mockup) ── */
+.o_field_widget.o_field_invalid .o_input {
+    border-color: #e53935 !important;
+    background-color: #fff5f5 !important;
+}
+
+/* ── Priority Stars ── */
+.o_priority .o_priority_star {
+    color: #ffc107;
+    font-size: 1.2rem;
+}
+
+/* ── Print Friendly ── */
+@media print {
+    .o_main_navbar,
+    .o_cp_buttons,
+    .o_statusbar_buttons { display: none !important; }
+    .o_form_sheet { border: none !important; box-shadow: none !important; }
+}
+
+/* ── Responsive Tweaks ── */
+@media (max-width: 768px) {
+    .o_transit_dashboard .row > div {
+        margin-bottom: 8px;
+    }
+    .o_transit_dashboard h2 {
+        font-size: 1.5rem;
+    }
+}

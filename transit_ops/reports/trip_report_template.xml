@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_trip_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2 class="text-center">TransitOps — Trip Report</h2>
+                        <hr/>
+
+                        <div class="row mt-4">
+                            <div class="col-6">
+                                <table class="table table-sm">
+                                    <tr>
+                                        <td class="fw-bold">Trip Code:</td>
+                                        <td><t t-esc="o.trip_code"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Status:</td>
+                                        <td><t t-esc="dict(o._fields['status'].selection).get(o.status)"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Priority:</td>
+                                        <td><t t-esc="dict(o._fields['priority'].selection).get(o.priority)"/></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-6">
+                                <table class="table table-sm">
+                                    <tr>
+                                        <td class="fw-bold">Pickup Date:</td>
+                                        <td><t t-esc="o.pickup_date" t-options='{"widget": "datetime"}'/></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Dispatched:</td>
+                                        <td><t t-esc="o.dispatched_at" t-options='{"widget": "datetime"}'/></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Completed:</td>
+                                        <td><t t-esc="o.completed_at" t-options='{"widget": "datetime"}'/></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <h4 class="mt-4">Route</h4>
+                        <table class="table table-bordered">
+                            <tr>
+                                <td class="fw-bold">Source</td>
+                                <td><t t-esc="o.source"/></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Destination</td>
+                                <td><t t-esc="o.destination"/></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Distance</td>
+                                <td><t t-esc="o.distance"/> km</td>
+                            </tr>
+                        </table>
+
+                        <h4 class="mt-4">Assignment</h4>
+                        <table class="table table-bordered">
+                            <tr>
+                                <td class="fw-bold">Vehicle</td>
+                                <td><t t-esc="o.vehicle_id.name"/> [<t t-esc="o.vehicle_id.registration_number"/>]</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Driver</td>
+                                <td><t t-esc="o.driver_id.name"/> (License: <t t-esc="o.driver_id.license_number"/>)</td>
+                            </tr>
+                        </table>
+
+                        <h4 class="mt-4">Cargo &amp; Financials</h4>
+                        <table class="table table-bordered">
+                            <tr>
+                                <td class="fw-bold">Cargo Weight</td>
+                                <td><t t-esc="o.cargo_weight"/> kg</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Revenue</td>
+                                <td>₹ <t t-esc="'{:,.2f}'.format(o.revenue)"/></td>
+                            </tr>
+                            <tr t-if="o.fuel_consumed">
+                                <td class="fw-bold">Fuel Consumed</td>
+                                <td><t t-esc="o.fuel_consumed"/> L</td>
+                            </tr>
+                            <tr t-if="o.fuel_efficiency_trip">
+                                <td class="fw-bold">Fuel Efficiency</td>
+                                <td><t t-esc="'{:.1f}'.format(o.fuel_efficiency_trip)"/> km/L</td>
+                            </tr>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

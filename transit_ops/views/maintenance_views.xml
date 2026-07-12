@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ═══ Maintenance Sequence ═══ -->
+    <record id="seq_transit_maintenance" model="ir.sequence">
+        <field name="name">Transit Maintenance Sequence</field>
+        <field name="code">transit.maintenance</field>
+        <field name="prefix">MNT-</field>
+        <field name="padding">4</field>
+        <field name="number_increment">1</field>
+    </record>
+
+    <!-- ═══ Maintenance Tree View ═══ -->
+    <record id="view_transit_maintenance_tree" model="ir.ui.view">
+        <field name="name">transit.maintenance.tree</field>
+        <field name="model">transit.maintenance</field>
+        <field name="arch" type="xml">
+            <tree string="Maintenance" decoration-danger="status == 'open'" decoration-info="status == 'in_progress'" decoration-success="status == 'completed'">
+                <field name="work_order_code"/>
+                <field name="vehicle_id"/>
+                <field name="vehicle_registration"/>
+                <field name="maintenance_type"/>
+                <field name="description"/>
+                <field name="technician"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="cost" sum="Total Cost"/>
+                <field name="status" widget="badge" decoration-danger="status == 'open'" decoration-info="status == 'in_progress'" decoration-success="status == 'completed'"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- ═══ Maintenance Form View ═══ -->
+    <record id="view_transit_maintenance_form" model="ir.ui.view">
+        <field name="name">transit.maintenance.form</field>
+        <field name="model">transit.maintenance</field>
+        <field name="arch" type="xml">
+            <form string="Maintenance Record">
+                <header>
+                    <button name="action_start" string="Start Work" type="object"
+                            class="btn-primary" invisible="status != 'open'"/>
+                    <button name="action_complete" string="Complete" type="object"
+                            class="btn-success" invisible="status == 'completed'"/>
+                    <button name="action_reopen" string="Reopen" type="object"
+                            class="btn-secondary" invisible="status != 'completed'"/>
+                    <field name="status" widget="statusbar" statusbar_visible="open,in_progress,completed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="work_order_code" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Vehicle">
+                            <field name="vehicle_id" options="{'no_create': True}"/>
+                            <field name="vehicle_registration"/>
+                        </group>
+                        <group string="Work Details">
+                            <field name="maintenance_type"/>
+                            <field name="technician"/>
+                            <field name="cost"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Schedule">
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                        </group>
+                    </group>
+                    <group string="Description">
+                        <field name="description" nolabel="1"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- ═══ Maintenance Search ═══ -->
+    <record id="view_transit_maintenance_search" model="ir.ui.view">
+        <field name="name">transit.maintenance.search</field>
+        <field name="model">transit.maintenance</field>
+        <field name="arch" type="xml">
+            <search string="Search Maintenance">
+                <field name="work_order_code"/>
+                <field name="vehicle_id"/>
+                <field name="technician"/>
+                <filter string="Open" name="open" domain="[('status', '=', 'open')]"/>
+                <filter string="In Progress" name="in_progress" domain="[('status', '=', 'in_progress')]"/>
+                <filter string="Completed" name="completed" domain="[('status', '=', 'completed')]"/>
+                <separator/>
+                <group expand="0" string="Group By">
+                    <filter string="Status" name="groupby_status" context="{'group_by': 'status'}"/>
+                    <filter string="Vehicle" name="groupby_vehicle" context="{'group_by': 'vehicle_id'}"/>
+                    <filter string="Type" name="groupby_type" context="{'group_by': 'maintenance_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ═══ Maintenance Graph ═══ -->
+    <record id="view_transit_maintenance_graph" model="ir.ui.view">
+        <field name="name">transit.maintenance.graph</field>
+        <field name="model">transit.maintenance</field>
+        <field name="arch" type="xml">
+            <graph string="Maintenance Costs" type="bar">
+                <field name="vehicle_id" type="row"/>
+                <field name="cost" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- ═══ Maintenance Action ═══ -->
+    <record id="action_transit_maintenance" model="ir.actions.act_window">
+        <field name="name">Maintenance</field>
+        <field name="res_model">transit.maintenance</field>
+        <field name="view_mode">tree,form,graph</field>
+        <field name="search_view_id" ref="view_transit_maintenance_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Schedule your first maintenance
+            </p>
+            <p>
+                Create maintenance records to track vehicle servicing. Vehicles automatically become "In Shop" when maintenance is active.
+            </p>
+        </field>
+    </record>
+</odoo>

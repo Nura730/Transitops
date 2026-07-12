@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ═══ Trip Dispatch Wizard Form ═══ -->
+    <record id="view_trip_dispatch_wizard_form" model="ir.ui.view">
+        <field name="name">transit.trip.dispatch.wizard.form</field>
+        <field name="model">transit.trip.dispatch.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Dispatch a New Trip">
+                <group string="📍 Route Details">
+                    <group>
+                        <field name="source" placeholder="e.g. Mumbai DC"/>
+                        <field name="destination" placeholder="e.g. Bengaluru Hub"/>
+                    </group>
+                    <group>
+                        <field name="pickup_date"/>
+                        <field name="priority"/>
+                    </group>
+                </group>
+                <group string="🚛 Vehicle Selection">
+                    <group>
+                        <field name="vehicle_id" options="{'no_create': True}"/>
+                        <field name="vehicle_capacity"/>
+                    </group>
+                </group>
+                <group string="👤 Driver Assignment">
+                    <group>
+                        <field name="driver_id" options="{'no_create': True}"/>
+                        <field name="driver_safety_score" widget="progressbar"/>
+                    </group>
+                </group>
+                <group string="📦 Cargo &amp; Financials">
+                    <group>
+                        <field name="cargo_weight"/>
+                        <field name="distance"/>
+                        <field name="revenue"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_confirm_dispatch" string="✅ Confirm &amp; Dispatch" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- ═══ Wizard Action ═══ -->
+    <record id="action_trip_dispatch_wizard" model="ir.actions.act_window">
+        <field name="name">Quick Dispatch</field>
+        <field name="res_model">transit.trip.dispatch.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
