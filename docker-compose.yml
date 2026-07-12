@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  web:
+    image: odoo:17.0
+    depends_on:
+      - db
+    ports:
+      - "80:8069"
+    volumes:
+      - odoo-web-data:/var/lib/odoo
+      - ./transit_ops:/mnt/extra-addons/transit_ops
+    environment:
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=odoo_hackathon_db_pass
+    restart: always
+
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=odoo
+      - POSTGRES_PASSWORD=odoo_hackathon_db_pass
+    volumes:
+      - odoo-db-data:/var/lib/postgresql/data
+    restart: always
+
+volumes:
+  odoo-web-data:
+  odoo-db-data:
