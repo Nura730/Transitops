@@ -240,6 +240,19 @@ Install **TransitOps**.
 
 ---
 
+# 🔐 Demo Credentials (RBAC)
+
+Use these logins to test role-based capabilities and navigation menu limitations:
+
+| Role | Username / Login | Password | Scope of Access |
+| :--- | :--- | :--- | :--- |
+| **Driver** | `dispatcher@transitops.com` | `dispatcher` | Access to dashboard, trips registry, and quick dispatch. |
+| **Safety Officer** | `safety@transitops.com` | `safety` | Driver safety compliance, license tracking, and maintenance logs. |
+| **Financial Analyst** | `finance@transitops.com` | `finance` | Operational costs, fuel analytics, toll expenses, and CSV exports. |
+| **Fleet Manager** | `manager@transitops.com` | `manager` | Full administrative control across all platform features. |
+
+---
+
 # 👥 Team
 
 | Name | Responsibility |
