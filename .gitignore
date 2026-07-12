@@ -1,6 +1,5 @@
 # Odoo runtime files
 odoo.log
-odoo_data/
 *.pyc
 __pycache__/
 *.pyo
