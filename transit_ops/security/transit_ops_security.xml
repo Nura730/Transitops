@@ -9,9 +9,9 @@
 
     <!-- ═══ Security Groups (RBAC) ═══ -->
 
-    <!-- Dispatcher: Creates trips, assigns vehicles and drivers, monitors deliveries -->
+    <!-- Driver: Creates trips, assigns vehicles and drivers, monitors deliveries -->
     <record id="group_dispatcher" model="res.groups">
-        <field name="name">Dispatcher</field>
+        <field name="name">Driver</field>
         <field name="category_id" ref="module_category_transit_ops"/>
         <field name="comment">Can create and manage trips, view vehicles and drivers.</field>
     </record>

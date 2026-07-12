@@ -54,6 +54,7 @@
         id="menu_fleet_care"
         name="Fleet Care"
         parent="menu_transit_ops_root"
+        groups="transit_ops.group_safety_officer"
         sequence="20"/>
 
     <menuitem
@@ -61,12 +62,14 @@
         name="Maintenance"
         parent="menu_fleet_care"
         action="action_transit_maintenance"
+        groups="transit_ops.group_safety_officer"
         sequence="1"/>
 
     <menuitem
         id="menu_fuel_expense"
         name="Fuel &amp; Expense"
         parent="menu_fleet_care"
+        groups="transit_ops.group_financial_analyst"
         sequence="2"/>
 
     <menuitem
@@ -74,6 +77,7 @@
         name="Fuel Logs"
         parent="menu_fuel_expense"
         action="action_transit_fuel_log"
+        groups="transit_ops.group_financial_analyst"
         sequence="1"/>
 
     <menuitem
@@ -81,6 +85,7 @@
         name="Expenses"
         parent="menu_fuel_expense"
         action="action_transit_expense"
+        groups="transit_ops.group_financial_analyst"
         sequence="2"/>
 
     <!-- ═══ INSIGHTS ═══ -->
@@ -88,6 +93,7 @@
         id="menu_insights"
         name="Insights"
         parent="menu_transit_ops_root"
+        groups="transit_ops.group_financial_analyst"
         sequence="30"/>
 
     <menuitem
@@ -95,6 +101,7 @@
         name="Reports &amp; Analytics"
         parent="menu_insights"
         action="action_transit_trip_report"
+        groups="transit_ops.group_financial_analyst"
         sequence="1"/>
 
     <menuitem
@@ -102,6 +109,7 @@
         name="Export to CSV"
         parent="menu_insights"
         action="action_transit_export_wizard"
+        groups="transit_ops.group_financial_analyst"
         sequence="2"/>
 
 </odoo>
