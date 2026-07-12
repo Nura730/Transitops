@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ═══ Trip Report Action ═══ -->
+    <record id="action_report_trip" model="ir.actions.report">
+        <field name="name">Trip Report</field>
+        <field name="model">transit.trip</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">transit_ops.report_trip_template</field>
+        <field name="report_file">transit_ops.report_trip_template</field>
+        <field name="binding_model_id" ref="model_transit_trip"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

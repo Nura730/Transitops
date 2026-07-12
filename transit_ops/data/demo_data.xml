@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- ═══ Vehicles ═══ -->
+        <record id="vehicle_volvo_fh16" model="transit.vehicle">
+            <field name="name">Volvo FH16</field>
+            <field name="registration_number">MH-14-DL-9821</field>
+            <field name="vehicle_type">truck</field>
+            <field name="max_capacity">25000</field>
+            <field name="odometer">120450</field>
+            <field name="acquisition_cost">4500000</field>
+            <field name="fuel_level">82</field>
+            <field name="year">2022</field>
+            <field name="home_depot">Mumbai DC</field>
+            <field name="location">Mumbai</field>
+            <field name="status">available</field>
+        </record>
+        <record id="vehicle_tata_prima" model="transit.vehicle">
+            <field name="name">Tata Prima LX</field>
+            <field name="registration_number">KA-01-AB-1234</field>
+            <field name="vehicle_type">truck</field>
+            <field name="max_capacity">22000</field>
+            <field name="odometer">85600</field>
+            <field name="acquisition_cost">3200000</field>
+            <field name="fuel_level">65</field>
+            <field name="year">2023</field>
+            <field name="home_depot">Bengaluru Hub</field>
+            <field name="location">Bengaluru</field>
+            <field name="status">available</field>
+        </record>
+        <record id="vehicle_ashok_leyland" model="transit.vehicle">
+            <field name="name">Ashok Leyland U-Truck</field>
+            <field name="registration_number">TN-02-CD-5678</field>
+            <field name="vehicle_type">truck</field>
+            <field name="max_capacity">18000</field>
+            <field name="odometer">156000</field>
+            <field name="acquisition_cost">2800000</field>
+            <field name="fuel_level">45</field>
+            <field name="year">2021</field>
+            <field name="home_depot">Chennai DC</field>
+            <field name="location">Chennai</field>
+            <field name="status">available</field>
+        </record>
+        <record id="vehicle_eicher_reefer" model="transit.vehicle">
+            <field name="name">Eicher Pro 3019</field>
+            <field name="registration_number">DL-05-EF-9012</field>
+            <field name="vehicle_type">reefer</field>
+            <field name="max_capacity">12000</field>
+            <field name="odometer">67800</field>
+            <field name="acquisition_cost">3800000</field>
+            <field name="fuel_level">90</field>
+            <field name="year">2024</field>
+            <field name="home_depot">Delhi DC</field>
+            <field name="location">Delhi</field>
+            <field name="status">available</field>
+        </record>
+        <record id="vehicle_mahindra_van" model="transit.vehicle">
+            <field name="name">Mahindra Supro Van</field>
+            <field name="registration_number">MH-02-GH-3456</field>
+            <field name="vehicle_type">van</field>
+            <field name="max_capacity">3000</field>
+            <field name="odometer">34200</field>
+            <field name="acquisition_cost">800000</field>
+            <field name="fuel_level">55</field>
+            <field name="year">2023</field>
+            <field name="home_depot">Pune DC</field>
+            <field name="location">Pune</field>
+            <field name="status">available</field>
+        </record>
+        <record id="vehicle_bharatbenz_trailer" model="transit.vehicle">
+            <field name="name">BharatBenz 5528T</field>
+            <field name="registration_number">GJ-01-IJ-7890</field>
+            <field name="vehicle_type">trailer</field>
+            <field name="max_capacity">28000</field>
+            <field name="odometer">210000</field>
+            <field name="acquisition_cost">5200000</field>
+            <field name="fuel_level">30</field>
+            <field name="year">2020</field>
+            <field name="home_depot">Ahmedabad DC</field>
+            <field name="location">Ahmedabad</field>
+            <field name="status">available</field>
+        </record>
+        <record id="vehicle_retired_sml" model="transit.vehicle">
+            <field name="name">SML Isuzu NQR</field>
+            <field name="registration_number">RJ-14-KL-1122</field>
+            <field name="vehicle_type">truck</field>
+            <field name="max_capacity">15000</field>
+            <field name="odometer">350000</field>
+            <field name="acquisition_cost">2200000</field>
+            <field name="fuel_level">10</field>
+            <field name="year">2017</field>
+            <field name="home_depot">Jaipur DC</field>
+            <field name="location">Jaipur</field>
+            <field name="status">retired</field>
+        </record>
+
+        <!-- ═══ Drivers ═══ -->
+        <record id="driver_rajesh" model="transit.driver">
+            <field name="name">Rajesh Kumar</field>
+            <field name="license_number">DL-0420110148392</field>
+            <field name="license_category">hmv</field>
+            <field name="license_expiry">2027-03-15</field>
+            <field name="phone">+91 98765 43210</field>
+            <field name="email">rajesh.k@transitops.io</field>
+            <field name="safety_score">92</field>
+            <field name="rating">4.8</field>
+            <field name="hours_per_week">42</field>
+            <field name="status">available</field>
+        </record>
+        <record id="driver_anil" model="transit.driver">
+            <field name="name">Anil Sharma</field>
+            <field name="license_number">KA-0620130567823</field>
+            <field name="license_category">hmv</field>
+            <field name="license_expiry">2026-11-30</field>
+            <field name="phone">+91 87654 32109</field>
+            <field name="email">anil.s@transitops.io</field>
+            <field name="safety_score">88</field>
+            <field name="rating">4.5</field>
+            <field name="hours_per_week">38</field>
+            <field name="status">available</field>
+        </record>
+        <record id="driver_priya" model="transit.driver">
+            <field name="name">Priya Desai</field>
+            <field name="license_number">MH-0320140789456</field>
+            <field name="license_category">hmv</field>
+            <field name="license_expiry">2027-06-20</field>
+            <field name="phone">+91 76543 21098</field>
+            <field name="email">priya.d@transitops.io</field>
+            <field name="safety_score">95</field>
+            <field name="rating">4.9</field>
+            <field name="hours_per_week">40</field>
+            <field name="status">available</field>
+        </record>
+        <record id="driver_vikram" model="transit.driver">
+            <field name="name">Vikram Singh</field>
+            <field name="license_number">DL-0220120234567</field>
+            <field name="license_category">hmv</field>
+            <field name="license_expiry">2026-08-10</field>
+            <field name="phone">+91 65432 10987</field>
+            <field name="email">vikram.s@transitops.io</field>
+            <field name="safety_score">78</field>
+            <field name="rating">4.2</field>
+            <field name="hours_per_week">45</field>
+            <field name="status">available</field>
+        </record>
+        <record id="driver_meena" model="transit.driver">
+            <field name="name">Meena Patel</field>
+            <field name="license_number">GJ-0720150345678</field>
+            <field name="license_category">lmv</field>
+            <field name="license_expiry">2026-07-15</field>
+            <field name="phone">+91 54321 09876</field>
+            <field name="email">meena.p@transitops.io</field>
+            <field name="safety_score">85</field>
+            <field name="rating">4.6</field>
+            <field name="hours_per_week">36</field>
+            <field name="status">available</field>
+        </record>
+        <record id="driver_expired" model="transit.driver">
+            <field name="name">Suresh Yadav</field>
+            <field name="license_number">RJ-0120100123456</field>
+            <field name="license_category">hmv</field>
+            <field name="license_expiry">2025-12-31</field>
+            <field name="phone">+91 43210 98765</field>
+            <field name="email">suresh.y@transitops.io</field>
+            <field name="safety_score">70</field>
+            <field name="rating">3.8</field>
+            <field name="hours_per_week">30</field>
+            <field name="status">available</field>
+        </record>
+
+        <!-- ═══ Fuel Logs ═══ -->
+        <record id="fuel_log_1" model="transit.fuel.log">
+            <field name="vehicle_id" ref="vehicle_volvo_fh16"/>
+            <field name="driver_id" ref="driver_rajesh"/>
+            <field name="date">2026-07-01</field>
+            <field name="litres">180</field>
+            <field name="cost">16200</field>
+            <field name="station">HP Petrol Pump, Panvel</field>
+            <field name="mileage">450</field>
+        </record>
+        <record id="fuel_log_2" model="transit.fuel.log">
+            <field name="vehicle_id" ref="vehicle_tata_prima"/>
+            <field name="driver_id" ref="driver_anil"/>
+            <field name="date">2026-07-03</field>
+            <field name="litres">150</field>
+            <field name="cost">13500</field>
+            <field name="station">IndianOil, Electronic City</field>
+            <field name="mileage">380</field>
+        </record>
+        <record id="fuel_log_3" model="transit.fuel.log">
+            <field name="vehicle_id" ref="vehicle_ashok_leyland"/>
+            <field name="driver_id" ref="driver_priya"/>
+            <field name="date">2026-07-05</field>
+            <field name="litres">200</field>
+            <field name="cost">18000</field>
+            <field name="station">BPCL, OMR Road</field>
+            <field name="mileage">520</field>
+        </record>
+        <record id="fuel_log_4" model="transit.fuel.log">
+            <field name="vehicle_id" ref="vehicle_eicher_reefer"/>
+            <field name="driver_id" ref="driver_vikram"/>
+            <field name="date">2026-07-07</field>
+            <field name="litres">120</field>
+            <field name="cost">10800</field>
+            <field name="station">HP Station, GT Karnal Road</field>
+            <field name="mileage">310</field>
+        </record>
+
+        <!-- ═══ Expenses ═══ -->
+        <record id="expense_toll_1" model="transit.expense">
+            <field name="vehicle_id" ref="vehicle_volvo_fh16"/>
+            <field name="expense_type">toll</field>
+            <field name="amount">2400</field>
+            <field name="date">2026-07-02</field>
+            <field name="description">Mumbai-Pune Expressway toll charges</field>
+        </record>
+        <record id="expense_insurance_1" model="transit.expense">
+            <field name="vehicle_id" ref="vehicle_tata_prima"/>
+            <field name="expense_type">insurance</field>
+            <field name="amount">45000</field>
+            <field name="date">2026-07-01</field>
+            <field name="description">Annual comprehensive insurance renewal</field>
+        </record>
+        <record id="expense_other_1" model="transit.expense">
+            <field name="vehicle_id" ref="vehicle_ashok_leyland"/>
+            <field name="expense_type">other</field>
+            <field name="amount">3500</field>
+            <field name="date">2026-07-04</field>
+            <field name="description">Truck washing and interior cleaning</field>
+        </record>
+
+    </data>
+</odoo>

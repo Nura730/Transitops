@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ═══ CSV Export Wizard Form ═══ -->
+    <record id="view_transit_export_wizard_form" model="ir.ui.view">
+        <field name="name">transit.export.wizard.form</field>
+        <field name="model">transit.export.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Export Data to CSV">
+                <group>
+                    <group>
+                        <field name="export_model"/>
+                        <field name="status_filter"/>
+                    </group>
+                </group>
+                <group invisible="not csv_file">
+                    <field name="csv_file" filename="csv_filename" widget="binary"/>
+                    <field name="csv_filename" invisible="1"/>
+                </group>
+                <footer>
+                    <button name="action_export" string="📥 Generate CSV" type="object" class="btn-primary"
+                            invisible="csv_file"/>
+                    <button string="Close" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- ═══ CSV Export Wizard Action ═══ -->
+    <record id="action_transit_export_wizard" model="ir.actions.act_window">
+        <field name="name">Export to CSV</field>
+        <field name="res_model">transit.export.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

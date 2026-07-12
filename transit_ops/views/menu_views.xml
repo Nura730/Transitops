@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ═══ Root Menu ═══ -->
+    <menuitem
+        id="menu_transit_ops_root"
+        name="TransitOps"
+        web_icon="transit_ops,static/description/icon.png"
+        sequence="1"/>
+
+    <!-- ═══ OPERATIONS ═══ -->
+    <menuitem
+        id="menu_operations"
+        name="Operations"
+        parent="menu_transit_ops_root"
+        sequence="10"/>
+
+    <menuitem
+        id="menu_dashboard"
+        name="Dashboard"
+        parent="menu_operations"
+        action="action_transit_dashboard"
+        sequence="1"/>
+
+    <menuitem
+        id="menu_trip_dispatcher"
+        name="Trip Dispatcher"
+        parent="menu_operations"
+        action="action_transit_trip"
+        sequence="2"/>
+
+    <menuitem
+        id="menu_dispatch_wizard"
+        name="Quick Dispatch"
+        parent="menu_operations"
+        action="action_trip_dispatch_wizard"
+        sequence="3"/>
+
+    <menuitem
+        id="menu_vehicle_registry"
+        name="Vehicle Registry"
+        parent="menu_operations"
+        action="action_transit_vehicle"
+        sequence="4"/>
+
+    <menuitem
+        id="menu_drivers"
+        name="Drivers"
+        parent="menu_operations"
+        action="action_transit_driver"
+        sequence="5"/>
+
+    <!-- ═══ FLEET CARE ═══ -->
+    <menuitem
+        id="menu_fleet_care"
+        name="Fleet Care"
+        parent="menu_transit_ops_root"
+        groups="transit_ops.group_safety_officer"
+        sequence="20"/>
+
+    <menuitem
+        id="menu_maintenance"
+        name="Maintenance"
+        parent="menu_fleet_care"
+        action="action_transit_maintenance"
+        groups="transit_ops.group_safety_officer"
+        sequence="1"/>
+
+    <menuitem
+        id="menu_fuel_expense"
+        name="Fuel &amp; Expense"
+        parent="menu_fleet_care"
+        groups="transit_ops.group_financial_analyst"
+        sequence="2"/>
+
+    <menuitem
+        id="menu_fuel_logs"
+        name="Fuel Logs"
+        parent="menu_fuel_expense"
+        action="action_transit_fuel_log"
+        groups="transit_ops.group_financial_analyst"
+        sequence="1"/>
+
+    <menuitem
+        id="menu_expenses"
+        name="Expenses"
+        parent="menu_fuel_expense"
+        action="action_transit_expense"
+        groups="transit_ops.group_financial_analyst"
+        sequence="2"/>
+
+    <!-- ═══ INSIGHTS ═══ -->
+    <menuitem
+        id="menu_insights"
+        name="Insights"
+        parent="menu_transit_ops_root"
+        groups="transit_ops.group_financial_analyst"
+        sequence="30"/>
+
+    <menuitem
+        id="menu_reports"
+        name="Reports &amp; Analytics"
+        parent="menu_insights"
+        action="action_transit_trip_report"
+        groups="transit_ops.group_financial_analyst"
+        sequence="1"/>
+
+    <menuitem
+        id="menu_csv_export"
+        name="Export to CSV"
+        parent="menu_insights"
+        action="action_transit_export_wizard"
+        groups="transit_ops.group_financial_analyst"
+        sequence="2"/>
+
+</odoo>
