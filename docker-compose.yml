@@ -1,14 +1,13 @@
 version: '3.8'
 services:
   web:
-    image: odoo:17.0
+    build: .
     depends_on:
       - db
     ports:
       - "80:8069"
     volumes:
       - odoo-web-data:/var/lib/odoo
-      - ./transit_ops:/mnt/extra-addons/transit_ops
     environment:
       - HOST=db
       - USER=odoo
